@@ -1,6 +1,6 @@
 <?php
 
-namespace Cache;
+namespace Modx\Ext\Cache;
 
 abstract class ICacheBackend {
 

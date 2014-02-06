@@ -1,9 +1,11 @@
 <?php
 
-namespace Cache;
+namespace Modx\Ext\Cache;
 
 const ONE_DAY = 86400;
 const ONE_WEEK = 604800;
+const ONE_HOUR = 3600;
+const ONE_MINUTE = 60;
 
 require_once __DIR__ . '/ICacheBackend.php';
 require_once __DIR__ . '/Backend/File.php';
@@ -68,7 +70,7 @@ class Cache {
 	// Engines
 	public function loadEngines(){
 		foreach (static::$availableEngines as $engine){
-			$class = 'Cache\\Backend\\' . $engine;
+			$class = 'Modx\\Ext\\Cache\\Backend\\' . $engine;
 			$name = strtolower($engine);
 			
 			if (empty($this->engines[$name]))

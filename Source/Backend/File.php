@@ -1,8 +1,9 @@
 <?php
+namespace Modx\Ext\Cache\Backend;
+use Modx\Ext\Cache\ICacheBackend;
+use Modx\Ext\Cache\Cache as Cache;
 
-namespace Cache\Backend;
-
-class File extends \Cache\ICacheBackend {
+class File extends ICacheBackend {
 
 	protected $time;
 
@@ -28,7 +29,7 @@ class File extends \Cache\ICacheBackend {
 	public function store($key, $content, $ttl = null){
 		$file = $this->prefix . $key;
 		
-		\Cache\write($file, ($ttl ? $this->time + $ttl : 0) . '^' . $content);
+		\Modx\Ext\Cache\write($file, ($ttl ? $this->time + $ttl : 0) . '^' . $content);
 	}
 	
 	public function erase($keys){
@@ -38,9 +39,9 @@ class File extends \Cache\ICacheBackend {
 	}
 
 	public function eraseAll(){
-		\Cache\unlink($this->prefix);
+		\Modx\Ext\Cache\unlink($this->prefix);
 	}
 	
 }
 
-\Cache\Cache::register('File');
+Cache::register('File');
